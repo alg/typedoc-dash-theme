@@ -9,13 +9,13 @@ This module contains the Dash theme of TypeDoc.
 
 Two easy steps:
 
- * Add this module to your TypeScript project:
+* Add this module to your TypeScript project:
 
-      $ npm install --dev typedoc-dash-theme typedoc
+        $ npm install --dev typedoc-dash-theme typedoc
 
- * Generate the doc:
+* Generate the doc:
 
-      $ grunt typedoc --theme node_modules/typedoc-dash-theme/bin --out <path/to/MyProject.docset>
+        $ grunt typedoc --theme node_modules/typedoc-dash-theme/bin --out <path/to/MyProject.docset>
 
 
 ## Contributing
