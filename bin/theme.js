@@ -83,6 +83,30 @@ var __extends = (this && this.__extends) || function (d, b) {
                 td.ensureDirectoriesExist(to);
 
                 if (td.FS.existsSync(from)) td.FS.copySync(from, to);
+
+                this._copyIcons(event.outputDirectory);
+            };
+
+            DashAssetsPlugin.prototype._copyIcons = function(dstIconsPath) {
+                var srcIconsPath = process.env.TYPEDOC_DASH_ICONS_PATH;
+                if (!srcIconsPath) {
+                  console.log("\nNOTE: Docset icons are not specified!");
+                  console.log("      You can specify the directory where icon.png and icon@2x.png reside with");
+                  console.log("      TYPEDOC_DASH_ICONS_PATH environment variable. They will be copied into the docset.\n");
+
+                  return;
+                }
+
+                this._copyIcon(srcIconsPath, dstIconsPath, 'icon.png');
+                this._copyIcon(srcIconsPath, dstIconsPath, 'icon@2x.png');
+            };
+
+            DashAssetsPlugin.prototype._copyIcon = function(srcIconsPath, dstIconsPath, name) {
+                var srcIconPath = td.Path.join(srcIconsPath, name);
+                var dstIconPath = td.Path.join(dstIconsPath, name);
+                if (td.FS.existsSync(srcIconPath)) {
+                    td.FS.copySync(srcIconPath, dstIconPath);
+                }
             };
 
             DashAssetsPlugin.prototype.onRendererEnd = function(event) {
